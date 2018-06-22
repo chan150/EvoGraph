@@ -23,8 +23,8 @@
 
 package kr.acon.util
 
-import org.apache.spark.{AccumulatorParam, SparkContext}
 import org.apache.spark.rdd.RDD
+import org.apache.spark.{AccumulatorParam, SparkContext}
 
 object Util {
   @inline final def binarySearch(a: Array[Double], toIndex: Int, key: Double) = {
