@@ -2,4 +2,7 @@
 .idea
 project
 target
-*
+EvoGraph*
+TrillionG*
+spark*
+graph*

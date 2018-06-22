@@ -3,7 +3,7 @@ EvoGraph: An Effective and Efficient Graph Upscaling Method for Preserving Graph
 
 
 ## Usage (Simple example)
- - Git
+ - Download source codes by
 ``
 git clone https://github.com/chan150/EvoGraph.git
 `` 
@@ -19,12 +19,12 @@ or
 
  - Execute EvoGraph in a single machine
 ``
-./run-local.sh output_file
+./run-local.sh output -gs.input toy -gs.sf 2
 ``
 
  - Execute EvoGraph in distributed machines
 ``
-./run.sh output_file
+./run.sh output -gs.input toy -gs.sf 2
 ``
 
 ## Usage (Detail example)
@@ -39,6 +39,10 @@ or
  - **-gs.sf** scale factor
  - **-machine** or **-m** number of machines/threads (e.g. -m 120)
  
+## Parameters (optional for a large input file)
+ - **-gs.eid** number of edges in original graph (optional; e.g. -gs.eid 10427)
+ - **-gs.vid** number of vertices in original graph (optional; e.g. -gs.vid 1024)
+
 ## License
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
