@@ -12,10 +12,11 @@ git clone https://github.com/chan150/EvoGraph.git
 ``
 ./compile.sh
 ``
-or 
+(for distributed environment) or 
 ``
 ./compile-local.sh
 ``
+(for a single machine) 
 
  - Execute EvoGraph in a single machine
 ``
