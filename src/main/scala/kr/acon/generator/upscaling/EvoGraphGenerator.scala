@@ -71,7 +71,7 @@ object EvoGraphGenerator extends BaseGenerator {
       i += 1
     }
 
-    val ds = new GraphUpscaling(edgeSrcArray, edgeDestArray, vidMax, eidMax)
+    val ds = new EvoGraphDS(edgeSrcArray, edgeDestArray, vidMax, eidMax)
 
     val broadcast = sc.broadcast(ds)
     val range = sc.rangeHash(0, eidMax * parser.scaleFactor - 1, 1, parser.machine)
