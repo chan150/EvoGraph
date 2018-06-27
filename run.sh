@@ -15,4 +15,8 @@ MASTER=`hostname -f`
 PORT=7077
 HDFS_HOME=`hadoop fs -df | grep hdfs | awk '{print $1}'`/user/$USER/
 
-spark-submit --master spark://$MASTER:$PORT --class kr.acon.EvoGraph --jars lib/fastutil-8.1.1.jar,lib/dsiutils-2.4.2.jar EvoGraph.jar -gs.input toy -format tsv -hdfs $HDFS_HOME $@
+spark-submit --master spark://$MASTER:$PORT --class kr.acon.EvoGraph \
+ --conf spark.network.timeout=20000000ms \
+ --conf spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version=2 \
+ --jars lib/fastutil-8.1.1.jar,lib/dsiutils-2.4.2.jar EvoGraph.jar \
+ -gs.input toy -format tsv -hdfs $HDFS_HOME $@
