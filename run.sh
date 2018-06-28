@@ -20,5 +20,5 @@ spark-submit --master spark://$MASTER:$PORT --class kr.acon.EvoGraph \
  --conf spark.hadoop.dfs.replication=1 \
  --conf spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version=2 \
  --jars lib/fastutil-8.1.1.jar,lib/dsiutils-2.4.2.jar EvoGraph.jar \
- -gs.input toy -format tsv -hdfs $HDFS_HOME $@
+ -gs.input toy -gs.sf 2 -format tsv -hdfs $HDFS_HOME $@
 
