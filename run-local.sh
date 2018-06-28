@@ -12,7 +12,5 @@ MEMORY=512g
 $SPARK_HOME/bin/spark-submit --master $MASTER --class kr.acon.EvoGraph \
  --executor-memory $MEMORY --driver-memory $MEMORY --conf spark.network.timeout=20000000ms \
  --conf spark.hadoop.dfs.replication=1 \
- --conf spark.driver.userClassPathFirst=true \
- --conf spark.executor.userClassPathFirst=true \
  --jars lib/fastutil-8.1.1.jar,lib/dsiutils-2.4.2.jar EvoGraph.jar \
  -gs.input toy -format tsv -hdfs $HDFS_HOME $@

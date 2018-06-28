@@ -73,15 +73,18 @@ object EvoGraphGenerator extends BaseGenerator {
 
     val ds = new EvoGraphDS(edgeSrcArray, edgeDestArray, vidMax, eidMax)
 
-    val broadcast = sc.broadcast(ds)
+    val bc = sc.broadcast(ds)
     val range = sc.rangeHash(0, eidMax * parser.scaleFactor - 1, 1, parser.machine)
-    val edges = range.map {
-      eid =>
-        val scaling = broadcast.value
-        val adjacency = new LongOpenHashBigSet(1)
-        val (src, dest) = scaling.determine(eid)
-        adjacency.add(dest)
-        (src, adjacency)
+    val edges = range.mapPartitions {
+      partitions =>
+        val scaling = bc.value
+        partitions.flatMap {
+          eid =>
+            val adjacency = new LongOpenHashBigSet(1)
+            val (src, dest) = scaling.determine(eid)
+            adjacency.add(dest)
+            Iterator((src, adjacency))
+        }
     }
     edges
   }
