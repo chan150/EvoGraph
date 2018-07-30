@@ -52,5 +52,21 @@ For more details about EvoGraph, please refer to [our paper(to appear)](http://i
 
 If you use EvoGraph, please cite:
 ```
-
+@inproceedings{Park:2018:EEE:3219819.3220123,
+ author = {Park, Himchan and Kim, Min-Soo},
+ title = {EvoGraph: An Effective and Efficient Graph Upscaling Method for Preserving Graph Properties},
+ booktitle = {Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery \&\#38; Data Mining},
+ series = {KDD '18},
+ year = {2018},
+ isbn = {978-1-4503-5552-0},
+ location = {London, United Kingdom},
+ pages = {2051--2059},
+ numpages = {9},
+ url = {http://doi.acm.org/10.1145/3219819.3220123},
+ doi = {10.1145/3219819.3220123},
+ acmid = {3220123},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {barabasi-albert, graph generation, graph upscaling, parallel computation, preferential attachment},
+} 
 ```
