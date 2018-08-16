@@ -1,5 +1,5 @@
 
-NUMCORE_MAC=`sysctl -e hw.ncpu | awk '{print $2}' 2>/dev/null`
+NUMCORE_MAC=`sysctl -e hw.ncpu | awk -F= '{print $2}' 2>/dev/null`
 NUMCORE_LINUX=`grep -c processor /proc/cpuinfo 2>/dev/null`
 NUMCORE=`echo $NUMCORE_MAC $NUMCORE_LINUX | awk '{print $1}'`
 
