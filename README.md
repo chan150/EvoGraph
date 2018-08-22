@@ -1,4 +1,4 @@
-# EvoGraph [SIGKDD18 (to appear)]
+# EvoGraph [SIGKDD18]
 EvoGraph: An Effective and Efficient Graph Upscaling Method for Preserving Graph Properties
 
 
@@ -48,7 +48,7 @@ git clone https://github.com/chan150/EvoGraph.git
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## Citing the paper
-For more details about EvoGraph, please refer to [our paper(to appear)](http://infolab.dgist.ac.kr/~mskim/papers/SIGKDD18.pdf).
+For more details about EvoGraph, please refer to [our paper](https://dl.acm.org/citation.cfm?id=3220123).
 
 If you use EvoGraph, please cite:
 ```
