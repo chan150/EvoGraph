@@ -48,7 +48,7 @@ git clone https://github.com/chan150/EvoGraph.git
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## Citing the paper
-For more details about EvoGraph, please refer to [our paper](https://dl.acm.org/citation.cfm?id=3220123).
+For more details about EvoGraph, please refer to [our paper](https://dl.acm.org/authorize?N667133).
 
 If you use EvoGraph, please cite:
 ```
