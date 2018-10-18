@@ -37,8 +37,11 @@ object EvoGraphGenerator extends BaseGenerator {
 
   override val parser = new EvoGraphParser
 
+  var eidMax = 0l
+  var vidMax = 0l
+
   override def postProcessing(): Unit = {
-    println("Input=%s, |V0|=%d, |E0|=%d, SF=%d".format(parser.inputPath, parser.vidMax, parser.eidMax, parser.scaleFactor))
+    println("Input=%s, |V0|=%d, |E0|=%d, SF=%d".format(parser.inputPath, vidMax, eidMax, parser.scaleFactor))
     println("PATH=%s, Machine=%d".format(parser.hdfs + parser.file, parser.machine))
     println("OutputFormat=%s, CompressCodec=%s".format(parser.format, parser.compress))
     println("RandomSeed=%d".format(parser.rng))
@@ -54,8 +57,8 @@ object EvoGraphGenerator extends BaseGenerator {
       }
     }
 
-    var eidMax = parser.eidMax
-    var vidMax = parser.vidMax
+    eidMax = parser.eidMax
+    vidMax = parser.vidMax
 
     if (eidMax <= 0 || vidMax <= 0) {
       println("[Warn] \"gs.vid\" or \"gs.eid\" has a wrong value")
