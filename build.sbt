@@ -12,6 +12,14 @@ libraryDependencies += "it.unimi.dsi" % "fastutil" % "8.1.1"
 
 libraryDependencies += "it.unimi.dsi" % "dsiutils" % "2.4.2"
 
-libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.1"
+libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.2"
 
-libraryDependencies += "org.apache.spark" %% "spark-graphx" % "2.3.1"
+libraryDependencies += "org.apache.spark" %% "spark-graphx" % "2.3.2"
+
+libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.3.2"
+
+libraryDependencies += "org.apache.hadoop" % "hadoop-client" % "2.7.7"
+
+lazy val root = (project in file(".")).dependsOn(dependencyTrillionG)
+
+lazy val dependencyTrillionG = RootProject(uri("https://github.com/chan150/TrillionG.git"))

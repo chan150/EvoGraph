@@ -21,7 +21,7 @@
  *    limitations under the License.
  */
 
-package kr.acon.generator.upscaling
+package kr.acon.upscaler
 
 import it.unimi.dsi.fastutil.ints.IntBigArrays
 import kr.acon.util.HashFunctions
@@ -30,13 +30,14 @@ import kr.acon.util.HashFunctions
 class EvoGraphDS(edgeSrc: Array[Array[Int]],
                  edgeDest: Array[Array[Int]],
                  vidMax: Long,
-                 eidMax: Long)
+                 eidMax: Long,
+                 rng: Long)
   extends Serializable {
 
   type ED = Long
   type VD = Long
 
-  def H(x: Long) = HashFunctions.byXORSHIFT(x)
+  def H(x: Long) = HashFunctions.byXORSHIFT(x+rng)
 
   def determine(eid: ED) = {
     eid.determine

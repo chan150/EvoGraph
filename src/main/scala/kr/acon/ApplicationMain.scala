@@ -21,23 +21,28 @@
  *    limitations under the License.
  */
 
-package kr.acon.lib.io
+package kr.acon
 
-import java.io.DataOutputStream
+import kr.acon.upscaler.{EvoGraphGenerator, EvoGraphPlusGenerator}
+import kr.acon.generator.skg.SKGGenerator
 
-import kr.acon.lib.io.recordwriter.{ADJ4RecordWriter, ADJ6RecordWriter, ADJ8RecordWriter}
+object ApplicationMain {
+  def main(args: Array[String]): Unit = {
+    val apps = Seq("TrillionG", "TrillionBA", "EvoGraph", "EvoGraphPlus", "TGSim")
+    require(args.length >= 1, s"argument must be larger than 1, args=${args.deep}")
+    require(apps.contains(args(0)), s"Unknown application, " +
+      s"please set application type in [${apps.mkString(", ")}]")
 
-class ADJ4OutputFormat
-    extends BaseOutputFormat {
-  @inline final override def getRecordWriter(out: DataOutputStream) = new ADJ4RecordWriter(out)
-}
+    val remainArgs = args.slice(1, args.length)
+    println(s"Launching ${args(0)}...")
+    args(0) match {
+      case "TrillionG" => SKGGenerator(remainArgs)
+      case "EvoGraph" => EvoGraphGenerator(remainArgs)
+      case "EvoGraphPlus" => EvoGraphPlusGenerator(remainArgs)
 
-class ADJ6OutputFormat
-    extends BaseOutputFormat {
-  @inline final override def getRecordWriter(out: DataOutputStream) = new ADJ6RecordWriter(out)
-}
-
-class ADJ8OutputFormat
-    extends BaseOutputFormat {
-  @inline final override def getRecordWriter(out: DataOutputStream) = new ADJ8RecordWriter(out)
+      case "TrillionBA" => println("TBD") //TODO
+      case "TGSim" => println("TBD") //TODO
+      case _ =>
+    }
+  }
 }

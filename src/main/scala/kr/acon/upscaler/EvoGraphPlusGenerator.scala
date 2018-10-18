@@ -21,13 +21,9 @@
  *    limitations under the License.
  */
 
-package kr.acon.lib.io
+package kr.acon.upscaler
 
-import java.io.DataOutputStream
+import kr.acon.generator.BaseGenerator
 
-import kr.acon.lib.io.recordwriter.TSVRecordWriter
-
-class TSVOutputFormat
-    extends BaseOutputFormat {
-  @inline final override def getRecordWriter(out: DataOutputStream) = new TSVRecordWriter(out)
+object EvoGraphPlusGenerator extends BaseGenerator {
 }

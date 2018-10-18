@@ -21,12 +21,13 @@
  *    limitations under the License.
  */
 
-package kr.acon.generator.upscaling
+package kr.acon.upscaler
 
 import it.unimi.dsi.fastutil.ints.IntBigArrays
 import it.unimi.dsi.fastutil.longs.LongOpenHashBigSet
 import kr.acon.generator.BaseGenerator
-import org.apache.spark.SparkContext
+import kr.acon.generator.skg.SKGGenerator.parser
+import kr.acon.parser.EvoGraphParser
 import org.apache.spark.rdd.RDD
 
 import scala.io.Source
@@ -34,9 +35,18 @@ import scala.io.Source
 object EvoGraphGenerator extends BaseGenerator {
   override val appName = "EvoGraph: An Effective and Efficient Graph Upscaling Method for Preserving Graph Properties"
 
-  override def run(sc: SparkContext): RDD[(Long, LongOpenHashBigSet)] = {
+  override val parser = new EvoGraphParser
 
-    import kr.acon.util.Util._
+  override def postProcessing(): Unit = {
+    println("Input=%s, |V0|=%d, |E0|=%d, SF=%d".format(parser.inputPath, parser.vidMax, parser.eidMax, parser.scaleFactor))
+    println("PATH=%s, Machine=%d".format(parser.hdfs + parser.file, parser.machine))
+    println("OutputFormat=%s, CompressCodec=%s".format(parser.format, parser.compress))
+    println("RandomSeed=%d".format(parser.rng))
+  }
+
+  override def run: RDD[(Long, LongOpenHashBigSet)] = {
+
+    import kr.acon.util.Utilities._
 
     implicit class ImplArrayArrayInt(self: Array[Array[Int]]) {
       def set(eid: Long, value: Int) = {
@@ -71,7 +81,7 @@ object EvoGraphGenerator extends BaseGenerator {
       i += 1
     }
 
-    val ds = new EvoGraphDS(edgeSrcArray, edgeDestArray, vidMax, eidMax)
+    val ds = new EvoGraphDS(edgeSrcArray, edgeDestArray, vidMax, eidMax, parser.rng)
 
     val bc = sc.broadcast(ds)
     val range = sc.rangeHash(0, eidMax * parser.scaleFactor - 1, 1, parser.machine)

@@ -1,6 +1,6 @@
 .DS_Store
 .idea
-project
+project/target
 target
-spark*
-graph*
+spark-2.3.2
+.staging
