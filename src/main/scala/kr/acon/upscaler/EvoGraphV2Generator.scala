@@ -54,8 +54,10 @@ object EvoGraphV2Generator extends BaseGenerator {
 
     if (eidMax <= 0 || vidMax <= 0) {
       println("Please set \"gs.vid\" and \"gs.eid\" to reduce load time")
+      val s = System.currentTimeMillis()
       parser.eidMax = original.count()
       parser.vidMax = original.map(x => math.max(x._1, x._2)).reduce(math.max)
+      println(s"Load time : ${(System.currentTimeMillis() - s)/1000d} seconds (Calculate |V| and |E| of original graph.")
     }
 
     require(parser.scaleFactor >= 1, s"Scale factor must be larger than 1 (SF=${parser.scaleFactor})")

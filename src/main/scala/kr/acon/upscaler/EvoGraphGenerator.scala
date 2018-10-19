@@ -62,6 +62,7 @@ object EvoGraphGenerator extends BaseGenerator {
 
     if (eidMax <= 0 || vidMax <= 0) {
       println("Please set \"gs.vid\" and \"gs.eid\" to reduce load time")
+      val s = System.currentTimeMillis()
       eidMax = 0
       vidMax = 0
       for (line <- Source.fromFile(parser.inputPath).getLines.filter(s => !s.startsWith("#"))) {
@@ -71,7 +72,10 @@ object EvoGraphGenerator extends BaseGenerator {
         eidMax += 1
       }
       vidMax += 1
+      println(s"Load time : ${(System.currentTimeMillis() - s)/1000d} seconds (Calculate |V| and |E| of original graph.")
     }
+
+    val s = System.currentTimeMillis()
 
     val edgeSrcArray = IntBigArrays.newBigArray(eidMax)
     val edgeDestArray = IntBigArrays.newBigArray(eidMax)
@@ -83,6 +87,9 @@ object EvoGraphGenerator extends BaseGenerator {
       edgeDestArray.set(i, dest)
       i += 1
     }
+
+    println(s"Load time : ${(System.currentTimeMillis() - s)/1000d} seconds.")
+
 
     val ds = new EvoGraphDS(edgeSrcArray, edgeDestArray, vidMax, eidMax, parser.rng)
 
