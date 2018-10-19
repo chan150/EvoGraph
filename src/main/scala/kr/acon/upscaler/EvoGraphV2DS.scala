@@ -26,6 +26,7 @@ package kr.acon.upscaler
 import it.unimi.dsi.fastutil.longs.{Long2ObjectArrayMap, LongOpenHashBigSet}
 import kr.acon.parser.EvoGraphParser
 
+import scala.annotation.tailrec
 import scala.util.Random
 
 
@@ -35,14 +36,14 @@ class EvoGraphV2DS(vidMax: Long, eidMax: Long, sf: Long) extends Serializable {
     this(p.vidMax, p.eidMax, p.scaleFactor)
   }
 
-  private[this] def getDegree(r: Random = new Random()) = {
+  @inline private[this] def getDegree(r: Random = new Random()) = {
     //    val n = (k - 1) * eidMax
     val p = 1D / eidMax
     val s = sf - 1
     (s + math.sqrt(s * (1 - p)) * r.nextGaussian).round
   }
 
-  @inline private[this] def referenceWithinSF(r: Random = new Random(), sk: Long = sf, dk: Long = sf, k: Long = sf): (Long, Long) = {
+  private[this] def referenceWithinSF(r: Random = new Random(), sk: Long = sf, dk: Long = sf, k: Long = sf): (Long, Long) = {
     if (k <= 1 || (sk != sf && dk != sf)) {
       (sk, dk)
     } else {
@@ -60,13 +61,13 @@ class EvoGraphV2DS(vidMax: Long, eidMax: Long, sf: Long) extends Serializable {
     referenceWithinSF(r)
   }
 
-  private[this] def originalEdges(src: Long, dst: Long) = {
+  @inline private[this] def originalEdges(src: Long, dst: Long) = {
     val adj = new LongOpenHashBigSet()
     adj.add(dst)
     Iterator((src, adj))
   }
 
-  private[this] def upscalingEdges(src: Long, dst: Long, r: Random = new Random()) = {
+  @inline private[this] def upscalingEdges(src: Long, dst: Long, r: Random = new Random()) = {
     val associatedEdges = new Long2ObjectArrayMap[LongOpenHashBigSet]()
     val size = getDegree(r)
 
