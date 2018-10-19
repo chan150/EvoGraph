@@ -61,7 +61,7 @@ object EvoGraphGenerator extends BaseGenerator {
     vidMax = parser.vidMax
 
     if (eidMax <= 0 || vidMax <= 0) {
-      println("[Warn] \"gs.vid\" or \"gs.eid\" has a wrong value")
+      println("Please set \"gs.vid\" and \"gs.eid\" to reduce load time")
       eidMax = 0
       vidMax = 0
       for (line <- Source.fromFile(parser.inputPath).getLines.filter(s => !s.startsWith("#"))) {

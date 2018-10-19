@@ -51,8 +51,12 @@ object EvoGraphV2Generator extends BaseGenerator {
     val inputFile = sc.textFile(parser.hdfs + parser.inputPath, parser.machine)
     val original = inputFile.map { x => val s = x.split("\\s+"); (s(0).toLong, s(1).toLong) }
 
-    parser.eidMax = original.count()
-    parser.vidMax = original.map(x => math.max(x._1, x._2)).reduce(math.max)
+
+    if (eidMax <= 0 || vidMax <= 0) {
+      println("Please set \"gs.vid\" and \"gs.eid\" to reduce load time")
+      parser.eidMax = original.count()
+      parser.vidMax = original.map(x => math.max(x._1, x._2)).reduce(math.max)
+    }
 
     require(parser.scaleFactor >= 1, s"Scale factor must be larger than 1 (SF=${parser.scaleFactor})")
 

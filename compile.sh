@@ -2,7 +2,6 @@
 
 if [ -d ~/.sbt/0.13/staging/*/trilliong ] ; then
     cd ~/.sbt/0.13/staging/*/trilliong
-    rm TrillionG.jar
     git pull
     ./compile.sh
     cd -
