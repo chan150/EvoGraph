@@ -23,12 +23,12 @@
 
 package kr.acon
 
-import kr.acon.upscaler.{EvoGraphGenerator, EvoGraphPlusGenerator}
+import kr.acon.upscaler.{EvoGraphGenerator, EvoGraphV2Generator}
 import kr.acon.generator.skg.SKGGenerator
 
 object ApplicationMain {
   def main(args: Array[String]): Unit = {
-    val apps = Seq("TrillionG", "TrillionBA", "EvoGraph", "EvoGraphPlus", "TGSim")
+    val apps = Seq("TrillionG", "TrillionBA", "EvoGraph", "EvoGraphV2", "TGSim")
     require(args.length >= 1, s"argument must be larger than 1, args=${args.deep}")
     require(apps.contains(args(0)), s"Unknown application, " +
       s"please set application type in [${apps.mkString(", ")}]")
@@ -38,10 +38,10 @@ object ApplicationMain {
     args(0) match {
       case "TrillionG" => SKGGenerator(remainArgs)
       case "EvoGraph" => EvoGraphGenerator(remainArgs)
-      case "EvoGraphPlus" => EvoGraphPlusGenerator(remainArgs)
+      case "EvoGraphV2" => EvoGraphV2Generator(remainArgs) // TODO: experimental
 
-      case "TrillionBA" => println("TBD") //TODO
-      case "TGSim" => println("TBD") //TODO
+      case "TrillionBA" => println("To appear") //TODO: support BA model
+      case "TGSim" => println("To appear") //TODO: support simulation
       case _ =>
     }
   }
