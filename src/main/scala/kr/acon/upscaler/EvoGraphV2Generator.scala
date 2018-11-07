@@ -48,7 +48,7 @@ object EvoGraphV2Generator extends BaseGenerator {
   override def run: RDD[(Long, LongOpenHashBigSet)] = {
 
 
-    val inputFile = sc.textFile(parser.hdfs + parser.inputPath, parser.machine)
+    val inputFile = sc.textFile(parser.hdfs + parser.inputPath, parser.machine).filter(!_.startsWith("#"))
     val original = inputFile.map { x => val s = x.split("\\s+"); (s(0).toLong, s(1).toLong) }
 
 
@@ -57,7 +57,7 @@ object EvoGraphV2Generator extends BaseGenerator {
       val s = System.currentTimeMillis()
       parser.eidMax = original.count()
       parser.vidMax = original.map(x => math.max(x._1, x._2)).reduce(math.max)
-      println(s"Load time : ${(System.currentTimeMillis() - s)/1000d} seconds (Calculate |V| and |E| of original graph.")
+      println(s"Load time : ${(System.currentTimeMillis() - s) / 1000d} seconds (Calculate |V| and |E| of original graph.")
     }
 
     require(parser.scaleFactor >= 1, s"Scale factor must be larger than 1 (SF=${parser.scaleFactor})")

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-if [ -d ~/.sbt/0.13/staging/*/trilliong ] ; then
-    cd ~/.sbt/0.13/staging/*/trilliong
+if [ -d ~/.sbt/0.13/staging/0886723d2637b5cba6f8/trilliong ] ; then
+    cd ~/.sbt/0.13/staging/0886723d2637b5cba6f8/trilliong
+    git reset --hard HEAD
     git pull
     ./compile.sh
     cd -

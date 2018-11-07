@@ -1,6 +1,9 @@
 .DS_Store
 .idea
-project/target
-target
-spark-2.3.2
-.staging
+project/target/
+target/
+spark-2.3.2/
+.staging/
+runEvoGraphV2.sh
+src/main/scala/kr/acon/upscaler/EvoGraphV2DS.scala
+src/main/scala/kr/acon/upscaler/EvoGraphV2DSGenerator.scala

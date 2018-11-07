@@ -26,7 +26,6 @@ package kr.acon.upscaler
 import it.unimi.dsi.fastutil.ints.IntBigArrays
 import it.unimi.dsi.fastutil.longs.LongOpenHashBigSet
 import kr.acon.generator.BaseGenerator
-import kr.acon.generator.skg.SKGGenerator.parser
 import kr.acon.parser.EvoGraphParser
 import org.apache.spark.rdd.RDD
 
@@ -72,7 +71,7 @@ object EvoGraphGenerator extends BaseGenerator {
         eidMax += 1
       }
       vidMax += 1
-      println(s"Load time : ${(System.currentTimeMillis() - s)/1000d} seconds (Calculate |V| and |E| of original graph.")
+      println(s"Load time : ${(System.currentTimeMillis() - s) / 1000d} seconds (Calculate |V| and |E| of original graph.")
     }
 
     val s = System.currentTimeMillis()
@@ -88,12 +87,31 @@ object EvoGraphGenerator extends BaseGenerator {
       i += 1
     }
 
-    println(s"Load time : ${(System.currentTimeMillis() - s)/1000d} seconds.")
+    println(s"Load time : ${(System.currentTimeMillis() - s) / 1000d} seconds.")
 
 
     val ds = new EvoGraphDS(edgeSrcArray, edgeDestArray, vidMax, eidMax, parser.rng)
-
     val bc = sc.broadcast(ds)
+
+//    (1 to 7).map(math.pow(2, _).round).foreach {
+    //      x =>
+    //        val s = System.currentTimeMillis()
+    //        val range = sc.rangeHash(0, eidMax * x - 1, 1, parser.machine)
+    //        val edges = range.mapPartitions {
+    //          partitions =>
+    //            val scaling = bc.value
+    //            partitions.flatMap {
+    //              eid =>
+    //                val adjacency = new LongOpenHashBigSet(1)
+    //                val (src, dest) = scaling.determine(eid)
+    //                adjacency.add(dest)
+    //                Iterator((src, adjacency))
+    //            }
+    //        }
+    //        edges.count
+    //        println(s"Computation time(${x}): ${(System.currentTimeMillis() - s) / 1000d} seconds.")
+    //    }
+
     val range = sc.rangeHash(0, eidMax * parser.scaleFactor - 1, 1, parser.machine)
     val edges = range.mapPartitions {
       partitions =>

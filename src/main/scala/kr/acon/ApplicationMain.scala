@@ -23,7 +23,7 @@
 
 package kr.acon
 
-import kr.acon.upscaler.{EvoGraphGenerator, EvoGraphV2Generator}
+import kr.acon.upscaler.EvoGraphGenerator
 import kr.acon.generator.skg.SKGGenerator
 
 object ApplicationMain {
@@ -38,7 +38,8 @@ object ApplicationMain {
     args(0) match {
       case "TrillionG" => SKGGenerator(remainArgs)
       case "EvoGraph" => EvoGraphGenerator(remainArgs)
-      case "EvoGraphV2" => EvoGraphV2Generator(remainArgs) // TODO: experimental
+      case "EvoGraphV2" => println("To appear")
+//        EvoGraphV2Generator(remainArgs) // TODO: experimental
 
       case "TrillionBA" => println("To appear") //TODO: support BA model
       case "TGSim" => println("To appear") //TODO: support simulation

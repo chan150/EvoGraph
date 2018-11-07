@@ -25,10 +25,7 @@ package kr.acon.upscaler
 
 import it.unimi.dsi.fastutil.longs.{Long2ObjectArrayMap, LongOpenHashBigSet}
 import kr.acon.parser.EvoGraphParser
-
-import scala.annotation.tailrec
 import scala.util.Random
-
 
 class EvoGraphV2DS(vidMax: Long, eidMax: Long, sf: Long) extends Serializable {
 
