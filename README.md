@@ -49,7 +49,7 @@ Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/
 
 ## Citing the paper
 For more details about EvoGraph, please refer to [our paper](https://dl.acm.org/authorize?N667133).
-You can download the paper open accessed in [my github.io site](https://chan150.github.io/EvoGraph/).
+You can download the paper via open access in [my github.io site](https://chan150.github.io/EvoGraph/).
 
 If you use EvoGraph, please cite:
 ```
